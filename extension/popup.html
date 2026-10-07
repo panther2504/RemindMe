@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RemindMe</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <h1>⏰ RemindMe</h1>
+    <span id="status" class="status" title="">Checking…</span>
+    <a id="openTab" href="#" title="Open in a tab">⤢</a>
+  </header>
+
+  <div id="companionHint" class="hint" hidden>
+    Desktop companion not detected. Reminders will use Chrome notifications, which
+    <strong>cannot stay above other applications</strong> and stop when Chrome is closed.
+    Install and start the RemindMe Companion for always-on-top reminders.
+  </div>
+
+  <section class="panel">
+    <h2 id="formHeading">New reminder</h2>
+    <form id="form" autocomplete="off">
+      <label>Title
+        <input id="title" maxlength="200" required placeholder="e.g. Stand-up meeting">
+      </label>
+      <label>Message
+        <textarea id="message" maxlength="2000" rows="2" placeholder="Optional details"></textarea>
+      </label>
+      <div class="row">
+        <label>Date <input id="date" type="date" required></label>
+        <label>Time <input id="time" type="time" required></label>
+      </div>
+      <div class="row">
+        <label>Repeat
+          <select id="repeat">
+            <option value="none">Does not repeat</option>
+            <option value="minutely">Every N minutes</option>
+            <option value="hourly">Every N hours</option>
+            <option value="daily">Daily / every N days</option>
+            <option value="weekdays">Every weekday (Mon–Fri)</option>
+            <option value="weekly">Weekly on selected days</option>
+            <option value="monthly">Monthly / every N months</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </label>
+        <label id="intervalWrap" hidden>Every
+          <input id="interval" type="number" min="1" max="1000" value="1">
+        </label>
+      </div>
+      <fieldset id="daysWrap" class="days" hidden>
+        <legend>On</legend>
+      </fieldset>
+      <p id="formError" class="error" hidden></p>
+      <div class="buttons">
+        <button type="button" id="cancelEdit" class="secondary" hidden>Cancel</button>
+        <button type="submit" id="submit" class="primary">Add reminder</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="ringingSection" class="panel ringing" hidden>
+    <h2>Ringing now</h2>
+    <ul id="ringingList" class="list"></ul>
+  </section>
+
+  <section class="panel">
+    <h2>Upcoming</h2>
+    <ul id="upcomingList" class="list"></ul>
+    <p id="upcomingEmpty" class="empty">No upcoming reminders.</p>
+  </section>
+
+  <section class="panel">
+    <details>
+      <summary>Completed &amp; dismissed (<span id="doneCount">0</span>)</summary>
+      <ul id="doneList" class="list"></ul>
+      <button type="button" id="clearDone" class="secondary small">Clear all</button>
+    </details>
+  </section>
+
+  <section class="panel">
+    <details>
+      <summary>Settings</summary>
+      <form id="settingsForm">
+        <label>Companion URL
+          <input id="companionUrl" placeholder="http://127.0.0.1:47321">
+        </label>
+        <label>Default snooze (minutes)
+          <input id="defaultSnooze" type="number" min="1" max="1440">
+        </label>
+        <label class="check">
+          <input id="chromeFallback" type="checkbox">
+          Use Chrome notifications when the companion is not running
+        </label>
+        <p id="settingsMsg" class="note" hidden></p>
+        <div class="buttons">
+          <button type="button" id="test" class="secondary">Show test reminder</button>
+          <button type="submit" class="primary">Save settings</button>
+        </div>
+      </form>
+    </details>
+  </section>
+
+  <template id="itemTemplate">
+    <li class="item">
+      <div class="info">
+        <div class="item-title"></div>
+        <div class="item-when"></div>
+        <div class="item-meta"></div>
+      </div>
+      <div class="item-actions"></div>
+    </li>
+  </template>
+
+  <script src="lib/core.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

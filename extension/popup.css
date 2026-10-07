@@ -1,0 +1,147 @@
+:root {
+  --bg: #f7f7fb;
+  --panel: #ffffff;
+  --text: #1f1d2e;
+  --muted: #6b6785;
+  --border: #e2e0ee;
+  --accent: #6d28d9;
+  --accent-text: #ffffff;
+  --warn-bg: #fff7e6;
+  --warn-border: #f59e0b;
+  --ok: #15803d;
+  --bad: #b91c1c;
+  --ring-bg: #fff1f2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15131f;
+    --panel: #1f1c2e;
+    --text: #f1effa;
+    --muted: #a8a3c4;
+    --border: #353049;
+    --accent: #a78bfa;
+    --accent-text: #160f2b;
+    --warn-bg: #2d2412;
+    --ok: #4ade80;
+    --bad: #f87171;
+    --ring-bg: #2c1720;
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  width: 400px;
+  min-height: 300px;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.4 "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+body.tab { width: auto; max-width: 640px; margin: 24px auto; }
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.top h1 { font-size: 16px; margin: 0; margin-right: auto; }
+.top a { color: var(--muted); text-decoration: none; font-size: 16px; }
+body.tab .top a { display: none; }
+
+.status { font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+.status.online { color: var(--ok); border-color: var(--ok); }
+.status.offline { color: var(--bad); border-color: var(--bad); }
+
+.hint {
+  margin: 10px 12px 0;
+  padding: 8px 10px;
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.panel {
+  margin: 10px 12px;
+  padding: 10px 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.panel.ringing { background: var(--ring-bg); border-color: var(--bad); }
+
+h2 { font-size: 13px; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+
+summary { cursor: pointer; font-weight: 600; color: var(--muted); }
+
+label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 12px; }
+label.check { display: flex; gap: 6px; align-items: center; font-weight: normal; }
+
+input, textarea, select {
+  display: block;
+  width: 100%;
+  margin-top: 3px;
+  padding: 6px 8px;
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+label.check input { width: auto; margin: 0; }
+textarea { resize: vertical; }
+
+.row { display: flex; gap: 8px; }
+.row > label { flex: 1; }
+
+.days { border: 1px solid var(--border); border-radius: 6px; margin: 0 0 8px; padding: 6px 8px; display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.days legend { font-size: 12px; font-weight: 600; padding: 0 4px; }
+.days label { display: flex; align-items: center; gap: 4px; margin: 0; font-weight: normal; }
+.days input { width: auto; margin: 0; }
+
+.buttons { display: flex; justify-content: flex-end; gap: 6px; }
+
+button {
+  font: inherit;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
+button.small { padding: 3px 8px; font-size: 12px; }
+button:hover { border-color: var(--accent); }
+
+.error { color: var(--bad); margin: 0 0 8px; }
+.note { color: var(--muted); margin: 0 0 8px; }
+.empty { color: var(--muted); margin: 0; }
+
+.list { list-style: none; margin: 0; padding: 0; }
+
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+}
+
+.item:first-child { border-top: none; }
+.info { flex: 1; min-width: 0; }
+.item-title { font-weight: 600; overflow-wrap: anywhere; }
+.item-when, .item-meta { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.item-actions { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-end; max-width: 170px; }
+.item-actions button { padding: 3px 7px; font-size: 12px; }

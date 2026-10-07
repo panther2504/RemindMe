@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Reminder</title>
+  <link rel="stylesheet" href="reminder.css">
+</head>
+<body>
+  <main class="card">
+    <header class="bar">
+      <span class="badge">⏰ Reminder</span>
+      <span class="when" id="when"></span>
+    </header>
+    <h1 id="title">Loading…</h1>
+    <p class="message" id="message"></p>
+    <p class="meta" id="meta"></p>
+    <p class="note">Chrome fallback — start the RemindMe Companion app to show reminders on top of all applications.</p>
+    <footer class="actions">
+      <div class="snooze">
+        <select id="snoozeMinutes" aria-label="Snooze duration">
+          <option value="5">5 min</option>
+          <option value="10">10 min</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="60">1 hour</option>
+          <option value="240">4 hours</option>
+          <option value="1440">1 day</option>
+        </select>
+        <button id="snooze">Snooze</button>
+      </div>
+      <button id="dismiss">Dismiss</button>
+      <button id="complete" class="primary">Complete ✓</button>
+    </footer>
+  </main>
+  <script src="lib/core.js"></script>
+  <script src="reminder.js"></script>
+</body>
+</html>

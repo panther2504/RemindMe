@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:">
+  <title>Reminder</title>
+  <link rel="stylesheet" href="overlay.css">
+</head>
+<body>
+  <main class="card" id="card">
+    <header class="bar">
+      <span class="badge" id="badge">⏰ Reminder</span>
+      <span class="when" id="when"></span>
+    </header>
+    <h1 id="title"></h1>
+    <p class="message" id="message"></p>
+    <p class="meta" id="meta"></p>
+    <footer class="actions">
+      <div class="snooze">
+        <select id="snoozeMinutes" aria-label="Snooze duration">
+          <option value="5">5 min</option>
+          <option value="10" selected>10 min</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="60">1 hour</option>
+          <option value="240">4 hours</option>
+          <option value="1440">1 day</option>
+        </select>
+        <button id="snooze" class="secondary">Snooze</button>
+      </div>
+      <button id="dismiss" class="secondary">Dismiss</button>
+      <button id="complete" class="primary">Complete ✓</button>
+    </footer>
+  </main>
+  <script src="overlay.js"></script>
+</body>
+</html>
